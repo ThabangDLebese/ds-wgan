@@ -19,7 +19,7 @@ The module contains functionality to simulate from either joint or conditional d
 will explain how to set up the data, train the models, generate the artificial data and evaluate the models.
 
 `Generative Adversarial Networks <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>`_ (GANs) consist of two parts,
-the generator and a discriminator. The generator generates new observations that look similar to training data by maximizing the probability
+the generator and the discriminator. The generator generates new observations that look similar to training data by maximizing the probability
 that the discriminator makes a mistake; the discriminator minimizes the probability of misclassifying generated data as real data.
 In the wgan module both the generator and the discriminator are neural networks.
 
