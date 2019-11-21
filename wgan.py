@@ -309,8 +309,9 @@ class Generator(nn.Module):
         continuous, categorical = hidden.split([self.d_cont, self.d_cat], -1)
         # apply bounds to continuous
         bounds = self.cont_bounds.to(hidden.device)
-        continuous = torch.stack([continuous, bounds[0:1].expand_as(continuous)]).max(0).values
-        continuous = torch.stack([continuous, bounds[1:2].expand_as(continuous)]).min(0).values
+        if continuous.size(-1) > 0:
+        	continuous = torch.stack([continuous, bounds[0:1].expand_as(continuous)]).max(0).values
+	        continuous = torch.stack([continuous, bounds[1:2].expand_as(continuous)]).min(0).values
         # renormalize categorical
         if categorical.size(-1) > 0: categorical = torch.cat([F.softmax(x, -1) for x in categorical.split(self.cat_dims, -1)], -1)
         return torch.cat([continuous, categorical], -1)
